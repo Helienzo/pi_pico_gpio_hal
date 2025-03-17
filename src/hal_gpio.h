@@ -37,7 +37,9 @@
  * The user of this module is expected to do all initialization of the GPIO.
  */
 
-#define HAL_GPIO_MAX_NUM_INTERFACES 28
+#ifndef HAL_GPIO_MAX_NUM_INTERFACES
+#define HAL_GPIO_MAX_NUM_INTERFACES (28)
+#endif /* HAL_GPIO_MAX_NUM_INTERFACES */
 
 typedef enum {
     HAL_GPIO_SUCCESS,
