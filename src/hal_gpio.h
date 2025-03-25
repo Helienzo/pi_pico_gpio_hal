@@ -68,12 +68,20 @@ typedef struct {
 } halGpioInstance_t;
 
 /**
- * Enable a callback on a specific GPIO
+ * Enable a callback on a specific GPIO on rising edge
  * Input: Pointer to an interface structure, or null do deinit an IRQ
  * Input: gpio pin number
  * Returns: halGpioErr_t
  */
-int32_t halGpioEnableIrqCb(halGpioInterface_t *interface, uint8_t gpio);
+int32_t halGpioEnableIrqCbRisingEdge(halGpioInterface_t *interface, uint8_t gpio);
+
+/**
+ * Enable a callback on a specific GPIO on falling edge
+ * Input: Pointer to an interface structure, or null do deinit an IRQ
+ * Input: gpio pin number
+ * Returns: halGpioErr_t
+ */
+int32_t halGpioEnableIrqCbFallingEdge(halGpioInterface_t *interface, uint8_t gpio);
 
 /**
  * Disable an active IRQ

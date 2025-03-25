@@ -58,7 +58,7 @@ static void gpio_callback(uint gpio, uint32_t event_mask) {
     inst.list[gpio]->data_cb(inst.list[gpio], event);
 }
 
-int32_t halGpioEnableIrqCb(halGpioInterface_t *interface, uint8_t gpio) {
+int32_t halGpioEnableIrqCbRisingEdge(halGpioInterface_t *interface, uint8_t gpio) {
     if (gpio >= HAL_GPIO_MAX_NUM_INTERFACES) {
         return HAL_GPIO_INVALID_ERROR;
     }
@@ -69,8 +69,25 @@ int32_t halGpioEnableIrqCb(halGpioInterface_t *interface, uint8_t gpio) {
 
     inst.list[gpio] = interface;
 
-    // Enable gpio callback  | 
+    // Enable gpio callback
     gpio_set_irq_enabled_with_callback(gpio, GPIO_IRQ_EDGE_RISE, true, gpio_callback);
+
+    return HAL_GPIO_SUCCESS;
+}
+
+int32_t halGpioEnableIrqCbFallingEdge(halGpioInterface_t *interface, uint8_t gpio) {
+    if (gpio >= HAL_GPIO_MAX_NUM_INTERFACES) {
+        return HAL_GPIO_INVALID_ERROR;
+    }
+
+    if (interface->data_cb == NULL) {
+        return HAL_GPIO_NULL_ERROR;
+    }
+
+    inst.list[gpio] = interface;
+
+    // Enable gpio callback
+    gpio_set_irq_enabled_with_callback(gpio, GPIO_IRQ_EDGE_FALL, true, gpio_callback);
 
     return HAL_GPIO_SUCCESS;
 }
