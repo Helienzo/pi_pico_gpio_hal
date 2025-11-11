@@ -37,6 +37,10 @@
  * The user of this module is expected to do all initialization of the GPIO.
  */
 
+#ifndef CONTAINER_OF
+#define CONTAINER_OF(ptr, type, member)	(type *)((char *)(ptr) - offsetof(type,member))
+#endif
+
 #ifndef HAL_GPIO_MAX_NUM_INTERFACES
 #define HAL_GPIO_MAX_NUM_INTERFACES (28)
 #endif /* HAL_GPIO_MAX_NUM_INTERFACES */
@@ -89,6 +93,15 @@ int32_t halGpioEnableIrqCbFallingEdge(halGpioInterface_t *interface, uint8_t gpi
  * Returns: halGpioErr_t
  */
 int32_t halGpioDisableIrqCb(uint8_t gpio);
+
+/**
+ * Init a specific gpio, this is just a helper function
+ * Input: gpio pin number
+ * Input: True to enable pull
+ * Input: True for pull up False for pull down, if enabled
+ * Returns: halGpioErr_t
+ */
+int32_t halGpioInitInputPin(uint8_t gpio, bool set_pull, bool pull_dir);
 
 /**
  * Initialize this module, configures the lower layer gpio callback
