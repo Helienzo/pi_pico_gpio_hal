@@ -144,22 +144,22 @@ int main()
             case MAIN_GPIO_1_RISING_EDGE_EVENT:
                 // Reset the event
                 my_instance.interrupt_event = MAIN_GPIO_IDLE;
-                LOG("BUTTON 1 PRESSED!\n");
+                LOG("BUTTON 1 RELEASED!\n");
                 break;
             case MAIN_GPIO_1_FALLING_EDGE_EVENT:
                 // Reset the event
                 my_instance.interrupt_event = MAIN_GPIO_IDLE;
-                LOG("BUTTON 1 RELEASED!\n");
+                LOG("BUTTON 1 PRESSED!\n");
                 break;
             case MAIN_GPIO_2_RISING_EDGE_EVENT:
                 // Reset the event
                 my_instance.interrupt_event = MAIN_GPIO_IDLE;
-                LOG("BUTTON 2 PRESSED!\n");
+                LOG("BUTTON 2 RELEASED!\n");
                 break;
             case MAIN_GPIO_2_FALLING_EDGE_EVENT:
                 // Reset the event
                 my_instance.interrupt_event = MAIN_GPIO_IDLE;
-                LOG("BUTTON 2 RELEASED!\n");
+                LOG("BUTTON 2 PRESSED!\n");
                 break;
             default:
                // This is invalid!
