@@ -106,6 +106,19 @@ int32_t halGpioDisableIrqCb(uint8_t gpio) {
     return HAL_GPIO_SUCCESS;
 }
 
+int32_t halGpioInitInputPin(uint8_t gpio, bool set_pull, bool pull_dir) {
+    gpio_init(gpio);
+    gpio_set_dir(gpio, GPIO_IN);
+
+    if (set_pull) {
+        if (pull_dir) {
+            gpio_pull_up(gpio);
+        } else {
+            gpio_pull_down(gpio);
+        }
+    }
+}
+
 int32_t halGpioInit(void) {
     for (uint32_t i = 0; i < HAL_GPIO_MAX_NUM_INTERFACES; i++) {
         inst.list[i] = NULL;
